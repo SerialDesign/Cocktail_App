@@ -19,26 +19,38 @@ Page::forceDashboard();
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css" />
+
+    <style>
+        body{
+            background-image: url('assets/images/woman_drinking.jpg');
+            /* background-size: cover; */
+            height: 100vh;
+        }
+        .js-login{
+            background: #eee;
+            padding: 50px;
+        }
+    </style>
 </head>
 <body>
     
     <div class="uk-section uk-container">
         <div class="uk-grid uk-child-width-1-3@s uk-child-width-1-1" uk-grid="">
-            <form class="uk-form-stacked js-login">
+            <form class="uk-form-stacked js-login uk-align-center">
 
                 <h2>Login</h2>
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text">Email</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="email" required placeholder="your@email.com">
+                        <input class="uk-input" id="form-stacked-text" type="email" autocomplete="true" required placeholder="your@email.com">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-stacked-text">Password</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-stacked-text" type="password" required placeholder="Your Password">
+                        <input class="uk-input" id="form-stacked-text" type="password" autocomplete="true" required placeholder="Your Password">
                     </div>
                 </div>
 

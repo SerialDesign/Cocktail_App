@@ -13,6 +13,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //header('Location: ');
     $return = []; //$array = ['Test', 'Test2', 'Test3', array('name' => 'Cyrill', 'lastname' => 'Wyrsch')];
     
+    /* NOT POSSIBLE?
+     print_r($_POST);
+    echo $_POST['email'];
+    echo $_POST['password']; */
+
     $email = Filter::String( $_POST['email'] ); 
     //$email = strtolower($email); - better in SQL Statement with LOWER() = faster 
     $password = Filter::String( $_POST['password'] ); 

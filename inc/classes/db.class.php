@@ -14,8 +14,8 @@ class DB {
 
 		try {
 
-            ////restricted user: user is restricted to only SELECT, INSERT, UPDATE, DELETE and ALTER (no Drop etc.) = Additional security! :) 
-			self::$con = new PDO( 'mysql:host=localhost;dbname=login_system;charset=utf8', 'restrictedUser', 'ENiIDLuABQSzBH6i!' ); //restrictedUser , ENiIDLuABQSzBH6i! //localhost: 'cywy', 'cywy!'
+            ////restricted user: user is restricted to only SELECT, INSERT, UPDATE, DELETE (no Drop etc.) = Additional security! :) 
+			self::$con = new PDO( 'mysql:host=localhost;dbname=cocktail_app;charset=utf8', 'restrictedUser', 'ENiIDLuABQSzBH6i!' ); //restrictedUser , ENiIDLuABQSzBH6i! //localhost: 'cywy', 'cywy!'
 			self::$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);//uncomment on production sites
 			self::$con->setAttribute( PDO::ATTR_PERSISTENT, false );

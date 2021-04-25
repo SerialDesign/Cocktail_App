@@ -29,7 +29,7 @@ $(document)
     //Assuming the code gets this far, we can start the AJAX process
     _error.hide();
 
-    //console.log(dataObj);
+    console.log(dataObj);
 
     $.ajax({
         type: 'POST',

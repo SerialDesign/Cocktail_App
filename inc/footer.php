@@ -19,3 +19,8 @@ if(!defined('__CONFIG__')){
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit-icons.min.js"></script>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/cocktailDB.js"></script>
+
+<!-- Semantic UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous"></script>
+    
