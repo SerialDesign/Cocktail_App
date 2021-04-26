@@ -58,6 +58,8 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
   </head>
 
   <body id="root">
+    
+    <!-- NAVIGATION -->
     <div class="ui tablet computer only padded grid">
       <div class="ui container">
         <div class="ui inverted borderless huge menu">
@@ -77,9 +79,15 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
             </div>
           </div>
 
+
+          <?php require('inc/signInAndLogoutSection.php')?>
+
+          <!-- 
           <a class="item <?=$loginAndSignUpVisibility?>" href="register.php">Sign Up</a>
           <a class="item <?=$loginAndSignUpVisibility?>" href="login.php">Log In</a>
-          <a class="item <?=$logoutVisibility?>" href="logout.php">Logout</a>
+          <a class="item <?=$logoutVisibility?>" href="logout.php">Logout</a> -->
+
+
 
           <!-- <div class="item right aligned" style="z-index:99;">
             <a href="register.php">Sign Up</a>
@@ -90,6 +98,10 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
         </div>
       </div>
     </div>
+
+
+    
+    <!-- NAVIGATION MOBILE VERSION -->
     <div class="ui mobile only grid">
       <div class="ui top fixed inverted borderless huge menu">
         <a class="header item">Corona Blues</a>
@@ -115,20 +127,20 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
               <a class="item"> One more seperated link </a>
             </div>
           </div>
-
-          <a class="item <?=$loginAndSignUpVisibility?>" href="register.php">Sign Up</a>
-          <a class="item <?=$loginAndSignUpVisibility?>" href="login.php">Log In</a>
-          <a class="item <?=$logoutVisibility?>" href="logout.php">Logout</a>
+  
+          <?php require('inc/signInAndLogoutSection.php')?>
           
         </div>
       </div>
     </div>
+
+
     <div class="slide"> <!-- slideImageBackground -->
       <div class="ui inverted vertical center aligned segment">
         <div class="ui active text container">
-          <h1 class="ui inverted header">Headline.</h1>
+          <h1 class="ui inverted header">Got the Corona Blues?</h1>
           <p>
-            bla bla bla
+            Drink some cocktails.. and you will be just fine! 
             <!-- Note: If you're viewing this page via a <code>file://</code> URL,
             the "next" and "previous" Glyphicon buttons on the left and right
             might not load/display properly due to web browser security rules. -->
@@ -136,6 +148,21 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           <a class="ui huge primary button" href="register.php" >Sign up today</a>
         </div>
       </div>
+
+      
+      <div class="ui inverted vertical center aligned segment">
+        <div class="ui active text container">
+          <h1 class="ui inverted header">Search our Library for drinks</h1>
+          <p>
+            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
+            ultricies vehicula ut id elit.
+          </p>
+          <a class="ui huge primary button" href="searchDrink.php">Search a Drink</a>
+        </div>
+      </div>
+
+
       <div class="ui inverted vertical center aligned segment">
         <div class="ui active text container">
           <h1 class="ui inverted header">Another example headline.</h1>
@@ -147,18 +174,11 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           <div class="ui huge primary button">Learn more</div>
         </div>
       </div>
-      <div class="ui inverted vertical center aligned segment">
-        <div class="ui active text container">
-          <h1 class="ui inverted header">One more for good measure</h1>
-          <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-            ultricies vehicula ut id elit.
-          </p>
-          <div class="ui huge primary button">Browse gallery</div>
-        </div>
-      </div>
+
+
     </div>
+
+
     <div class="ui container">
       <div class="ui vertical segment">
         <div class="ui three column stackable center aligned grid container">
@@ -181,7 +201,7 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
               class="ui centered small circular image"
               src="https://www.thecocktaildb.com/images/media/drink/km6se51484411608.jpg"
             /> <!-- https://www.thecocktaildb.com/images/media/drink/xsqsxw1441553580.jpg -->
-            <h1 class="ui header">Heading</h1>
+            <h1 class="ui header">Skrt Skrt</h1>
             <p>
               Donec sed odio dui. Etiam porta sem malesuada magna mollis
               euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
@@ -194,8 +214,8 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
             <img
               class="ui centered small circular image"
               src="https://www.thecocktaildb.com/images/media/drink/zvoics1504885926.jpg"
-            /> <!-- wireframe ./assets/images/wireframe/square-image.png -->
-            <h1 class="ui header">Heading</h1>
+            /> 
+            <h1 class="ui header">Don't drink and drive</h1>
             <p>
               Donec sed odio dui. Etiam porta sem malesuada magna mollis
               euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
@@ -206,7 +226,12 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           </div>
         </div>
       </div>
-      <div class="ui vertical segment">
+
+
+
+
+
+      <!-- <div class="ui vertical segment">
         <div class="ui stackable grid">
           <div class="ten wide column">
             <h1 class="ui header">
@@ -227,14 +252,85 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
             />
           </div>
         </div>
+      </div> -->
+
+      <div class="ui vertical segment">
+        <div class="ui stackable grid">
+          <div class="ten wide column">
+            <h1 class="ui header">
+              Random Drink
+              <span class="sub">out of our library.</span>
+            </h1>
+            <p>
+              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
+              ligula porta felis euismod semper. Praesent commodo cursus magna,
+              vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+              commodo.
+            </p>
+
+            <button id="generateRandomDrink" class="ui button">Get another random Drink</button>
+
+          </div>
+
+
+          <div class="six wide column">
+            <!-- <img
+              class="ui image"
+              src="./assets/images/wireframe/square-image.png"
+            /> -->
+            <div class="ui card">
+                <a class="image" href="#">
+                    <img id="randomDrinkImg" src="" alt="">
+                </a>
+                
+                <div class="content">
+                    <a class="header" href="#">
+                        <h3 id="randomDrink"></h3>
+                    </a>
+                    <div class="meta">
+                        <h4 id="randomDrinkIngredients" class="ingredients" style="display:none;"></h4>
+                        <p id="randomDrinkDetailText"></p>
+                    </div>
+                </div>
+            
+                <!-- <button id="loveRandomDrink" class="ui button">Love</button> -->
+                <div class="extra content">
+                    <div class="ui compact menu">
+                    
+                        <a id="drinkIngredients" class="item">
+                            <i class="glass martini icon"></i> Ingredients
+                            <!-- <div class="floating ui teal label">22</div> -->
+                        </a>
+                        <a id="drinkInstructions" class="item">
+                            <i class="hand point right icon"></i> Instructions
+                            <!-- <div class="floating ui teal label">22</div> -->
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div id="messageBox"></div>
+
+            <!-- HIDDEN FIELD WITH DRINKID - for further requests -->
+            <input type="hidden" id="drinkID">
+
+
+          </div>
+
+        </div>
       </div>
+
+
+
+
       <div class="ui vertical segment">
         <div class="ui stackable grid">
           <div class="six wide column">
             <img
               class="ui image"
-              src="./assets/images/wireframe/square-image.png"
-            />
+              src="./assets/images/girl_mixing_drink.jpg"
+            /> <!-- wireframe ./assets/images/wireframe/square-image.png -->
           </div>
           <div class="ten wide column">
             <h1 class="ui header">
@@ -270,6 +366,7 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           </div>
         </div>
       </div>
+
       <footer class="ui vertical segment">
         <div class="ui two column grid">
           <div class="column">
@@ -281,10 +378,14 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           </div>
         </div>
       </footer>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+
+    <script src="assets/js/cocktailDB.js"></script>
     <script>
       $(document).ready(function() {
         $(".ui.toggle.button").click(function() {
@@ -299,6 +400,10 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           speed: 500
         });
       });
+        
+
+      getRandomDrink();
+        
     </script>
   </body>
 </html>

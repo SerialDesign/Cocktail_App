@@ -15,7 +15,7 @@ Page::forceDashboard();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css" />
@@ -23,12 +23,21 @@ Page::forceDashboard();
     <style>
         body{
             background-image: url('assets/images/woman_drinking.jpg');
-            /* background-size: cover; */
+            background-size: cover; /* Todo: remove again? */
             height: 100vh;
         }
         .js-login{
-            background: #eee;
+            background: whitesmoke;
             padding: 50px;
+            box-shadow: 0 0 1em gold;
+            opacity: 0.9;
+        }
+        @media only screen and (max-width: 640px)  {
+            .js-login{
+            background: whitesmoke;
+            padding: 20px 20px;
+            margin: 100px 20px 100px 50px;
+        }
         }
     </style>
 </head>
@@ -57,7 +66,7 @@ Page::forceDashboard();
                 <div class="uk-margin uk-alert uk-alert-danger js-error" style="display:none;"></div>
 
                 <div class="uk-margin">
-                    <button class="uk-button uk-button-default" type="submit">Login</button>
+                    <button class="uk-button uk-button-default goldButton" type="submit">Login</button>
                 </div>
 
             </form>

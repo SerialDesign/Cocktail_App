@@ -130,7 +130,7 @@ if( isset($_GET["id"]) ){
 
 
     <!-- PAGE CONTENT -->
-    <div class="ui container extended">
+    <div class="ui container extended drinkDetailContent">
       
 
       <!-- CONTENT - INGREDIENTS & INSTRUCTIONS etc. -->

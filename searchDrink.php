@@ -1,5 +1,10 @@
 <?php
 
+// Allow the config
+define('__CONFIG__', true);
+// Require the config
+require_once "inc/config.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,6 +111,8 @@
   </head>
 
   <body id="root">
+
+    <!-- NAVIGATION -->
     <div class="ui tablet computer only padded grid">
       <div class="ui container">
         <div class="ui inverted borderless huge menu">
@@ -124,9 +131,16 @@
               <a class="item"> One more seperated link </a>
             </div>
           </div>
+
+          <?php require('inc/signInAndLogoutSection.php')?>
+
+
         </div>
       </div>
     </div>
+
+    
+    <!-- NAVIGATION MOBILE VERSION -->
     <div class="ui mobile only grid">
       <div class="ui top fixed inverted borderless huge menu">
         <a class="header item">Corona Blues</a>
@@ -152,6 +166,9 @@
               <a class="item"> One more seperated link </a>
             </div>
           </div>
+
+          <?php require('inc/signInAndLogoutSection.php')?>
+        
         </div>
       </div>
     </div>
@@ -164,7 +181,7 @@
           <section class="ui text container">
 
             <!-- *** SEARCH *** -->
-            <h1 class="ui inverted header" style="color: #FF1493;"> <!-- TODO:remove inline style -->
+            <h1 class="ui inverted header" style="color: #FF1493; text-shadow: 1px 1px 5px black;"> <!-- TODO:remove inline style -->
               Search a Drink
             </h1>                             
 
@@ -234,7 +251,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
 
 
     <script src="assets/js/searchDrink.js"></script>

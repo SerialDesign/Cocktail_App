@@ -11,19 +11,72 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     // Always return JSON Format
     header('Content-Type: application/json');
-    //header('Location: ');
-    $return = []; //$array = ['Test', 'Test2', 'Test3', array('name' => 'Cyrill', 'lastname' => 'Wyrsch')];
+    // return array -> saves result of validation with error messages
+    $return = [];
     
+    $username = Filter::String( $_POST['username'] );
     $email = Filter::String( $_POST['email'] ); 
     //$email = strtolower($email); - better in SQL Statement with LOWER() = faster 
+    $password = Filter::String( $_POST['password'] ); 
+    $confirmPW = Filter::String( $_POST['confirm_password'] ); 
 
-    // Make sure the user does not exist
+
+    // Validate Username
+    if( strlen($username) < 4 ){
+        $return['error'] = "Username must be more than 3 signs"; 
+        // if it is not a valid email - send error back and quits script
+        echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    }
+
+    // Validate e-mail
+    if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $return['error'] = $email ." is not a valid email"; 
+        // if it is not a valid email - send error back and quits script
+        echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    }
+
+
+    // Validate if Passward and ConfirmPassword are the save value
+    if( $password != $confirmPW ){
+        $return['error'] = "Passwords do not match each other"; 
+        // if it is not a valid email - send error back and quits script
+        echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    }
+
+    /* 
+    $preValidationError = false;
+
+    // Validate Username
+    if( strlen($username) < 4 ){
+        $return['error'] = "Username must be more than 3 signs"; 
+        $preValidationError = true;
+    }
+
+    // Validate e-mail
+    if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $return['error'] = $email ." is not a valid email"; 
+        $preValidationError = true;
+    }
+
+
+    // Validate if Passward and ConfirmPassword are the save value
+    if( $password != $confirmPW ){
+        $return['error'] = "Passwords do not match each other"; 
+        $preValidationError = true;
+    }
+
+    if($preValidationError){
+        echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    } */
+
+
+    // Making sure the user does not exist
     $user_found = User::Find($email);
 
     if($user_found){
         // User exists
         // We can also check to see if they are able to log in
-        $return['error'] = "You already have an account";
+        $return['error'] = "You already have an account. Go to <a href='login.php' class='signInLink'>Log in</a>";
         $return['isLoggedIn'] = false;
     }else{
         // User does not exists, add them now
@@ -39,16 +92,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_SESSION['user_id'] = (int) $user_id;
 
         // Return the proper information back to JavaScript to redirect us
-        $return['redirect'] = 'dashboard.php?message=welcome'; 
+        $return['redirect'] = 'home.php?message=welcome'; 
         $return['isLoggedIn'] = true;
     }
-
-    // Make sure the user CAN be added AND is added 
-
+    
     echo json_encode($return, JSON_PRETTY_PRINT); exit;
+
 }else{
     //Die. Kill the scrip. Redirect the user. Do something regardless.
-    exit('Site not called over AJAX');
+    
+    //exit('Site not called over AJAX');
+    header('Location: ../home.php');
 }
 
 ?>

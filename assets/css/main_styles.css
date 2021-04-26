@@ -225,16 +225,25 @@ p code {
 
 /* Drink site */
 @media only screen and (min-width: 600px)  {
-  #drinkIngredients{
+  .drinkDetailContent #drinkIngredients{
     width: 100%;
   } 
-
-
-
 }
 
 
 /* used to hide login, signup, logout and adminfunctions dynamically of the Session state (or role for admin link) */
 .hide{ 
   display:none !important;
+}
+
+/* used on login & register page */
+.signInLink{
+  font-weight: bold;
+  text-decoration: underline;
+  color: green;
+}
+
+.goldButton{
+  width: 100% !important;
+  background: gold !important;
 }

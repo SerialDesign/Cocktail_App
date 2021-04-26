@@ -18,11 +18,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo $_POST['email'];
     echo $_POST['password']; */
 
-    $email = Filter::String( $_POST['email'] ); 
+  //$email = Filter::String( $_POST['email'] ); 
+    $email = Filter::Email( $_POST['email'] ); 
     //$email = strtolower($email); - better in SQL Statement with LOWER() = faster 
     $password = Filter::String( $_POST['password'] ); 
 
-    // Make sure the user does not exist
+
+    // Validate e-mail
+    if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $return['error'] = $email ." is not a valid email"; 
+        // if it is not a valid email - send error back and quits script
+        echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    }
+
+
+    // Making sure the user does not exist
     $user_found = User::Find($email, true);
 
     if($user_found){
@@ -33,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if( password_verify($password, $hashPassword) ){
             // User is signed in
-            $return['redirect'] = "dashboard.php";
+            $return['redirect'] = "home.php";
 
             $_SESSION['user_id'] = $user_id;
 
@@ -47,9 +57,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $return['error'] = "You do not have an account. <a href='register.php'>Create one now?</a>";
     }
 
-    // Make sure the user CAN be added AND is added 
-
     echo json_encode($return, JSON_PRETTY_PRINT); exit;
+    
 }else{
     //Die. Kill the scrip. Redirect the user. Do something regardless.
     exit('Site not called over AJAX');

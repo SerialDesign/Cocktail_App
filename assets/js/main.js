@@ -1,18 +1,30 @@
 
-    //alert("form was not submitted");
-$(document)
+// alert("form was not submitted");
+$(document) // refactored code - combined for register & login form, sending dataObj over ajax accordingly
 .on("submit", "form.js-register, form.js-login", function(event) {
     event.preventDefault();
     
     let _form = $(this); //entire form element in variable _form
     let _error = $(".js-error", _form);
 
-    let dataObj = {
-        email: $("input[type='email']", _form).val(), //only searches within form element, not the whole page. Good practise if you have a big page
-        password: $("input[type='password']", _form).val()
+    let dataObj;
+    // dataObj is sent over ajax to the 
+    if( _form.hasClass('js-login') ){
+        dataObj = {
+            email: $("input[type='email']", _form).val(), //only searches within form element, not the whole page. Good practise if you have a big page
+            password: $("input[type='password']", _form).val()
+        }
+    }else if ( _form.hasClass('js-register') ){
+        dataObj = {
+            username: $("#usernameRegister", _form).val(),
+            email: $("input[type='email']", _form).val(), //only searches within form element, not the whole page. Good practise if you have a big page
+            password: $("#passwordRegister", _form).val(),
+            confirm_password: $("#confirmPwRegister", _form).val()
+        }
     }
+    
 
-    //just a very simple js validation
+    //just a very simple js validation - real validation is over ajax (./ajax/login.php)
     if(dataObj.email.length < 6){
         _error
             .text("Please enter a valid email address")
@@ -20,7 +32,7 @@ $(document)
         return false; // just exit here
     }else if(dataObj.password.length < 11){
         _error
-            .text("Please enter a passphrase that is at least 11 characters long.")
+            .text("Passphrase has to be at least 11 characters long.")
             .show();
         return false; // just exit here
     }
@@ -61,7 +73,7 @@ $(document)
     })
     .always(function ajaxAlwaysDoThis(dataObj){
         // Always do
-        console.log("Always");
+        //console.log("Always");
     })
 
 
