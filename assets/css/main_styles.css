@@ -141,17 +141,6 @@ p code {
   );
 }
 
-@media only screen and (max-width: 767px) {
-  .slick-prev.slick-arrow {
-    padding-left: 4rem;
-    padding-right: calc(4rem + 20px);
-  }
-
-  .slick-next.slick-arrow {
-    padding-left: 4rem;
-    padding-right: calc(4rem + 20px);
-  }
-}
 
 .slick-dots {
   bottom: 15px;
@@ -165,6 +154,38 @@ p code {
   font-size: 1.5rem;
 }
 
+@media only screen and (max-width: 767px) {
+  .slick-prev.slick-arrow {
+    padding-left: 4rem;
+    padding-right: calc(4rem + 20px);
+  }
+
+  .slick-next.slick-arrow {
+    padding-left: 4rem;
+    padding-right: calc(4rem + 20px);
+  }
+}
+
+
+@media only screen and (max-width: 418px) {
+  #musicButtonIngredientPage{
+    margin-top: 50px;
+  } 
+}
+
+/* Drink site */
+@media only screen and (min-width: 600px)  {
+  .drinkDetailContent #drinkIngredients{
+    width: 100%;
+  } 
+}
+
+
+
+
+footer{
+  margin: 200px 0 0 0 !important;
+}
 
 
 /* FONT */
@@ -174,13 +195,13 @@ p code {
 }
 
 
-
 /*** Special margin classes which are used multiple times (to overwrite styles of semantic ui) ***/
 
 /* Margin All Sides */
 
 
 /* Margin Top */
+
 .marginTop30{
     margin-top: 30px !important;
 }
@@ -206,6 +227,7 @@ p code {
 
 .extended{
     width: 90% !important;
+    min-height: 500px !important;
 }
 
 .measure{
@@ -218,17 +240,13 @@ p code {
 
 
 
+
 #drinkInstructions{
   justify-content: flex-start !important;
 }
 /* MEDIA QUERIES */
 
-/* Drink site */
-@media only screen and (min-width: 600px)  {
-  .drinkDetailContent #drinkIngredients{
-    width: 100%;
-  } 
-}
+
 
 
 /* used to hide login, signup, logout and adminfunctions dynamically of the Session state (or role for admin link) */
@@ -247,3 +265,37 @@ p code {
   width: 100% !important;
   background: gold !important;
 }
+
+#goldButtonn{
+  width: 100%;
+  /* background: gold !important; */
+
+}
+
+
+#addToFavouritesMessage{
+  margin:10px 15px !important;
+}
+
+/* .ui.corner.label .bottom {
+    top: calc(100% - 4em);
+
+   
+}
+.ui.corner.label .icon {
+  top: calc(100% - 1.5em)
+} 
+
+.ui.corner.label:after {
+  position: absolute;
+  content: "";
+  z-index: -1;
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+  border-top: 4em solid transparent;
+  border-right: 0px solid tranparent;
+  border-bottom: 0px solid;
+  border-left: 4em solid transparent;
+  transition: border-color 0.1s ease;      
+  } */

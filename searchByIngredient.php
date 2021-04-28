@@ -22,7 +22,7 @@ require_once "inc/config.php";
     <meta name="keywords" content="Semantic-UI, Theme, Design, Template" />
     <meta name="author" content="PPType" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Search a Drink</title>
+    <title>Corona Blues - Search By Ingredient</title>
 
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
@@ -114,24 +114,11 @@ require_once "inc/config.php";
         <div class="ui inverted borderless huge menu">
           <a class="header item">Corona Blues</a>
           <a class="item" href="home.php">Home</a> 
-          <a class="active item">Search a Drink</a>
-          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item" href="searchDrink.php">Search a Drink</a>
+          <a class="active item" href="searchByIngredient.php">Search by Ingredient</a>
           <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
+
           
-          <!--Maybe use later.. Dropdown in menu.. No use yet
-          <div class="ui dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item"> Action </a> <a class="item"> Another action </a>
-              <a class="item"> Something else here </a>
-              <div class="ui divider"></div>
-              <div class="header">Navbar header</div>
-              <a class="item"> Seperated link </a>
-              <a class="item"> One more seperated link </a>
-            </div>
-          </div> -->
-
-
           <!-- Show SignUp & Login buttons OR Logout - depending if the User is logged in or not --> 
           <?php require('inc/signInAndLogoutSection.php')?>
 
@@ -154,10 +141,11 @@ require_once "inc/config.php";
         </div>
         <div class="ui vertical borderless inverted fluid menu">
           <a class="item" href="home.php">Home</a> 
-          <a class="active item">Search a Drink</a>
-          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item" href="searchDrink.php">Search a Drink</a>
+          <a class="active item" href="searchByIngredient.php">Search by Ingredient</a>
           <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
 
+          
           <!-- Show SignUp & Login buttons OR Logout - depending if the User is logged in or not --> 
           <?php require('inc/signInAndLogoutSection.php')?>
         
@@ -174,7 +162,7 @@ require_once "inc/config.php";
 
             <!-- *** SEARCH *** -->
             <h1 class="ui inverted header" style="color: #FF1493; text-shadow: 1px 1px 5px black;"> <!-- TODO:remove inline style -->
-              Search a Drink
+              Search by Ingredient
             </h1>                             
 
             <!-- SEARCH -->
@@ -183,13 +171,13 @@ require_once "inc/config.php";
               <!-- DRINK SEARCH -->
               <div class="ui search marginTop50">
                 <div class="ui fluid icon input">
-                  <input id="drinkSearchByName" type="text" name="drinkSearch" placeholder="Text Search ...">
+                  <input id="drinkSearchByIngredient" type="text" name="drinkSearch" placeholder="Type in Ingredient... e.g. Vodka">
                   <i class="search icon"></i>
                 </div>
               </div>
 
               <!-- SEARCH BUTTON -->
-              <button id="drinkSearchSubmit" type="submit" class="ui huge pink button marginTop30 marginBottom30">Search</button>
+              <button id="ingredientSearchSubmit" type="submit" class="ui huge pink button marginTop30 marginBottom30">Search</button>
               
 
               <!-- MUSIC FEATURE
@@ -200,7 +188,7 @@ require_once "inc/config.php";
 
               <div class="bg-music" style="margin-top:80px">
                   <audio id="music" src="assets/music/myCupRunnethOver.wav" loop=""></audio>
-                  <button class="btn">
+                  <button class="btn" id="musicButtonIngredientPage">
                     <i class="fas fa-play-circle"></i>
                     <i class="fas fa-pause-circle"></i>
                   </button>
@@ -220,13 +208,15 @@ require_once "inc/config.php";
     <div class="ui container extended">
       
 
-      <div id="resultDrinkSearch" class="ui vertical segment link cards">
+      <div id="resultIngredientSearch" class="ui vertical segment link cards">
         <h2>Nothing to show here. Use the search above Dude.. Are you drunk already?</h2>
 
 
       </div>
 
 
+
+      <!-- FOOTER -->
       <footer class="ui vertical segment">
         <div class="ui two column grid">
           <div class="column">

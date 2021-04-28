@@ -24,6 +24,7 @@ include_once "classes/Page.class.php";
 include_once "classes/User.class.php";
 include_once "classes/Drink.class.php";
 include_once "functions.php";
+include_once "linksForLoggedInUsers.php";
 
 $con = DB::getConnection();
 

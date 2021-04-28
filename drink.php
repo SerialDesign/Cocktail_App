@@ -13,6 +13,19 @@ if( isset($_GET["id"]) ){
   $drink->skrt();
  */
 
+  
+  $visibilityAddDrinkToFav = "hide";
+  $isDrinkFavourited = "";
+
+  if( isset($_SESSION['user_id']) ){
+    $visibilityAddDrinkToFav = "";
+
+    if ( User::checkIfDrinkIsFavourited( $_SESSION['user_id'] , $drinkID) ){
+        $isDrinkFavourited = "red";
+    }
+
+  }
+
 }else{
   header('Location: home.php');
 
@@ -36,7 +49,7 @@ if( isset($_GET["id"]) ){
     <meta name="keywords" content="Semantic-UI, Theme, Design, Template" />
     <meta name="author" content="PPType" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Corona Blues</title>
+    <title>Corona Blues - Drink Details</title>
 
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
@@ -63,27 +76,25 @@ if( isset($_GET["id"]) ){
   </head>
 
   <body id="root">
+    <!-- NAVIGATION -->
     <div class="ui tablet computer only padded grid">
       <div class="ui container">
         <div class="ui inverted borderless huge menu">
           <a class="header item">Corona Blues</a>
-          <a class="item" href="home.php">Home</a> 
-          <a class="active item">Search a Drink</a>
-          <a class="item">About</a>
-          <div class="ui dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item"> Action </a> <a class="item"> Another action </a>
-              <a class="item"> Something else here </a>
-              <div class="ui divider"></div>
-              <div class="header">Navbar header</div>
-              <a class="item"> Seperated link </a>
-              <a class="item"> One more seperated link </a>
-            </div>
-          </div>
+          <a class="item">Home</a> 
+          <a class="item" href="searchDrink.php">Search a Drink</a>
+          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
+
+          <?php require('inc/signInAndLogoutSection.php')?>
+
         </div>
       </div>
     </div>
+
+
+    
+    <!-- NAVIGATION MOBILE VERSION -->
     <div class="ui mobile only grid">
       <div class="ui top fixed inverted borderless huge menu">
         <a class="header item">Corona Blues</a>
@@ -95,20 +106,13 @@ if( isset($_GET["id"]) ){
           </div>
         </div>
         <div class="ui vertical borderless inverted fluid menu">
-          <a class="item" href="home.php">Home</a> 
-          <a class="active item">Search a Drink</a>
-          <a class="item">About</a>
-          <div class="ui dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item"> Action </a> <a class="item"> Another action </a>
-              <a class="item"> Something else here </a>
-              <div class="ui divider"></div>
-              <div class="header">Navbar header</div>
-              <a class="item"> Seperated link </a>
-              <a class="item"> One more seperated link </a>
-            </div>
-          </div>
+          <a class="item">Home</a> 
+          <a class="item" href="searchDrink.php">Search a Drink</a>
+          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
+  
+          <?php require('inc/signInAndLogoutSection.php')?>
+          
         </div>
       </div>
     </div>
@@ -136,8 +140,18 @@ if( isset($_GET["id"]) ){
       <!-- CONTENT - INGREDIENTS & INSTRUCTIONS etc. -->
       <div class="ui center aligned grid marginTop30">
           
-          <h2 id="drinkIngredients"> </h2>
+          <a id="AddOrRemoveFavourite" class="ui left aligned label <?=$visibilityAddDrinkToFav?>">
+              <!-- <?= $isDrinkFavourited == "red" ? "Saved in Favourites" : "Save to Favourites" ?> -->
+              <!-- Save to Favourites    -->
+              <i id="heartIcon" class="large big heart icon <?=$isDrinkFavourited?>" style="margin:0;"></i>
+          </a>
 
+          <!-- SAVE TO FAVOURITE DRINKS MESSAGE BOX -->
+          <div id="addToFavouritesMessage" class="ui message js-error" style="display:none; width:100%">Message</div>
+
+
+          <h2 id="drinkIngredients"> </h2>
+          
           <!-- <h2>Instructions</h2>  -->
           <p id="drinkInstructions" class="fontSize20 marginBottom100"> </p>
 
@@ -148,6 +162,8 @@ if( isset($_GET["id"]) ){
           <!-- SEARCH FOR ANOTHER DRINK BUTTON -->
           <a href="searchDrink.php" class="ui huge inverted green button marginTop30 marginBottom30">Search for another Drink</a>
           
+          <!-- HIDDEN FIELD WITH DRINKID  -->
+          <input type="hidden" id="drinkID" value="<?=$drinkID?>">
 
       </div>
 
@@ -168,9 +184,6 @@ if( isset($_GET["id"]) ){
     </div>
       
 
-    <!-- HIDDEN FIELD WITH DRINKID  -->
-    <input type="hidden" id="drinkID" value="<?=$drinkID?>">
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -179,17 +192,24 @@ if( isset($_GET["id"]) ){
 
 
     <script src="assets/js/cocktailDB.js"></script>
+    <!-- TODO: why does it not work if saveDrinkToFavourites method is in searchDrink.js instead cocktailDB???-->
+    <script src="assets/js/searchDrink.js"></script> 
 
     
     <script>
       $(document).ready(function() {
         
-        
+        $(".ui.toggle.button").click(function() {
+          $(".mobile.only.grid .ui.vertical.menu").toggle(100);
+        });
+
+        $(".ui.dropdown").dropdown();
+
+
         drinkID = $('#drinkID').val();
 
         let obj = getDrinkObj(drinkID);
 
-        
         console.log("OBJname: "+obj.name);
         //console.log("OBJimage: "+obj.image);
         //$('#drinkImageHeader').css({"backgroundImage":"url(\"https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg\") !important", "backgroundSize":"cover !important"});
@@ -202,8 +222,16 @@ if( isset($_GET["id"]) ){
         $('#drinkImageHeader').css({
             "background-image":'url("'+url+'")', 
             "background-size":'cover'}); */
-        
+
+        $('#AddOrRemoveFavourite').on('click', () => {
+
+          event.preventDefault();
+
+          saveDrinkToFavourites( $('#drinkID').val() )
+        })
+
       });
+
 
 
     </script>

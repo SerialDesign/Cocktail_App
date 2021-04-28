@@ -117,9 +117,7 @@ if($getUserInfo->rowCount() == 1){
                     
             </div>
         </div>
-    </div>
-
-    <div class="amiibos"></div>
+</div>
 
     <div class="ui container">
         <div class="ui link cards" style="margin:50px;">

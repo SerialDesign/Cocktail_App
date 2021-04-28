@@ -1,6 +1,4 @@
 /* Global Variables */
-
-//displayData(); - könnte auch hier oben stehen.. Da eh alle function zuerst geladen werden..
 const cocktailDB_url = 'https://www.thecocktaildb.com/api/json/v1/1/';
 const randomDrink_endpoint = `${cocktailDB_url}random.php`;
 const drinkDetailsByID_endpoint = `${cocktailDB_url}lookup.php?i=`;
@@ -8,14 +6,13 @@ const drinkName_endpoint = `${cocktailDB_url}search.php?s=`;
 
 const drinkImage_endpoint = 'https://www.thecocktaildb.com/images/media/drink/';
 
-//ingredientField.hide();
 
 async function getRandomDrink(){
     const response = await fetch(randomDrink_endpoint);
     const data = await response.json();
 
     console.log(data);
-    //data.drinks.
+
     console.log(data.drinks[0].strDrink);
     console.log(data.drinks[0].strDrinkThumb);
 
@@ -124,8 +121,14 @@ async function getInstructionsByDrinkID( drinkID ){
 $('#generateRandomDrink').on('click', () => {
     getRandomDrink();
 
-    resetDetailText();
+    resetDetailText(); // resets / closes opened Ingredients and Inscrution fields.
 })
+
+function resetDetailText() {
+    $('#randomDrinkIngredients').hide();
+    $('#randomDrinkDetailText').hide();
+}
+
 
 
 $('#drinkIngredients').on('click', () => {
@@ -154,13 +157,6 @@ $('#drinkInstructions').on('click', () => {
 
     getInstructionsByDrinkID(drinkID);
 })
-
-/* $('#loveRandomDrink').on('click', () => {
-    getRandomDrink();
-
-    messageBox.innerHTML = messageBox.innerHTML + 1;
-})
- */
 
 
 async function getDrinkObj( drinkID ){
@@ -241,6 +237,9 @@ async function getDrinkObj( drinkID ){
 } */
 
 
+
+/** Gets Ingredients as green semanticUI Label fields 
+ *  - USED ON drink.php page (Drink Detail page) ***/
 function getLabeledIngredientsAndMeasuresOfDrink( data ){
 
     let drinkIngredients = '';
@@ -267,151 +266,105 @@ function getLabeledIngredientsAndMeasuresOfDrink( data ){
 
 
 
-function resetDetailText() {
-    $('#randomDrinkIngredients').hide();
-    $('#randomDrinkDetailText').hide();
-}
 
 
 
+function saveDrinkToFavourites ( drinkID ) {
 
+    event.preventDefault();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function displayData(){
-
-    //Request to the Amiibo API gameseries endpoint
-    //await weil es ein promise ist
-    const response = await fetch(games_endpoint);
-    const data = await response.json();
-
-
-    //create new array with all games (some are repeats)
-    const onlyNames = [];   
-    //ganzes json durchiterieren und jeden gamenamen hinzufügen
-    data.amiibo.forEach(game => {
-        onlyNames.push(game.name);
-    })
-    console.log(onlyNames);
-
-    //Filter through the onlyNames array and get rid of repeats
-    //new Set rerkennt doppelte namen - es vergleicht ob der Wert schon existiert, wenn ja, wird es nicht hinzugefügt
-    const uniqueNames = [...new Set(onlyNames)];
-    //console.log(uniqueNames);
+    //alert('drinkID' + drinkID);
+    /* 
+    let _form = $(this); //entire form element in variable _form
     
+ */
+    let _error = $(".js-error");
+    let _messageBox = $('#addToFavouritesMessage');
+    let _heartIcon = $("#heartIcon");
 
+    let dataObj = {
+        drinkID: drinkID
+    };
+    // dataObj is sent over ajax to the 
+/*     if( _form.hasClass('js-login') ){
+        dataObj = {
+            email: $("input[type='email']", _form).val(), //only searches within form element, not the whole page. Good practise if you have a big page
+            password: $("input[type='password']", _form).val()
+        }
+    }else if ( _form.hasClass('js-register') ){
+        dataObj = {
+            username: $("#usernameRegister", _form).val(),
+            email: $("input[type='email']", _form).val(), //only searches within form element, not the whole page. Good practise if you have a big page
+            password: $("#passwordRegister", _form).val(),
+            confirm_password: $("#confirmPwRegister", _form).val()
+        }
+    }
 
-    //Create DOM elements for each game
-    //*** */const gameList = document.createElement('ul'); 
-    const gameList = document.querySelector('.menu');
-    //gameList.classList.add("menu");
-    //gamelist dem 'games' container hinzufügen
-    uniqueNames.forEach(gameName => {
-        //const exampleTemplate = `<li>${gameName}</li>`;
-        const exampleTemplate =  `<div class="item" data-value="af"></i>${gameName}</div>`;
-        gameList.innerHTML += exampleTemplate;
+ */
+    //Assuming the code gets this far, we can start the AJAX process
+    //_error.hide();
+
+    console.log(dataObj);
+
+    $.ajax({
+        type: 'POST',
+        url: 'ajax/addOrRemoveFavourite.php',
+        data: dataObj,
+        dataType: 'json',
+        async: true,
+        /* possible to catch/check statuscode to send more information via the http headers - with using a function 
+        statusCode: {
+            403: function(){
+                alert('Not allowed');
+            }
+        } */
     })
-    //document.querySelector('.games').appendChild(gameList);
-    //document.querySelector('.menu').appendChild(gameList);
+    .done(function ajaxDone(data) {
+        //whatever data is
+        console.log("done.. data: "+data);
+        if(data.redirect !== undefined){
+           window.location = data.redirect; 
+        }else if(data.success !== undefined){ //or data.isLoggedIn === true, but we have enough info with error
+            /* _error
+                .html(data.error) //text(data.error) 
+                .show(); */
 
-    
-    document.querySelectorAll('selected').forEach(item => {
-       // item.addEventListener('click', function(){
-            const gameName = item.innerText;
-            console.log(gameName);
-            //Pass the clicked name to the displayAmiibos function
-            displayAmiibos(gameName);
-        //})
+            _heartIcon.addClass("red");
+            _messageBox
+                .html(data.success)
+                .addClass("green")
+                .show()
+
+        }else if(data.successRemovedFav !== undefined){ 
+            /* _error
+                .html(data.error) //text(data.error) 
+                .show(); */
+
+            _heartIcon.removeClass("red");
+            _messageBox
+                .html(data.successRemovedFav) 
+                .addClass("green")
+                .show()
+        }
+        else if(data.error !== undefined){ 
+            /* _error
+                .html(data.error) //text(data.error) 
+                .show(); */
+
+            _messageBox
+                .html(data.error) 
+                .addClass("red")
+                .show()
+        }
     })
-}
-
-
-/* $('.menu').click( function(){
-    //alert('test');
-    const gameName = document.querySelector('.selected').innerText;
-
-    console.log(gameName);
-
-    displayAmiibos(gameName);
-})
-
-$('.menu').on('keypress', function(){
-    alert('test');
-    const gameName = document.querySelector('.selected').innerText;
-
-    console.log(gameName);
-
-    displayAmiibos(gameName);
-}) */
-
-//schöner wenn in separater Methode ausgelagert, könnte aber eig auch in der async function oben stehen
-async function displayAmiibos (gameName){
-    //Request to the Amiibo API with a query to another endpoint
-    const queryURL = amiibos_endpoint + gameName;
-    const response = await fetch(queryURL);
-    const data = await response.json();
-
-    console.log(data);
-    const amiibosContainer = document.querySelector(".amiibos");
-
-    //Log every amiibo of the selected/clicked game
-/*     data.amiibo.forEach(amiibo => {
-        console.log(amiibo.name);
-    }) */
-
-    resetCards();
-    const cardsList = document.querySelector('.cards');
-
-    data.amiibo.forEach(amiibo => {
-        console.log(amiibo.name);
-        console.log("imageSRC:"+amiibo.image);
-        const exampleTemplate =  `<div class="card">
-                                        <div class="image">
-                                            <img src="${amiibo.image}">
-                                        </div>
-                                        <div class="content">
-                                        <div class="header">${amiibo.name}</div>
-                                        <div class="description">
-                                        Type: ${amiibo.type}
-                </div>
-                                    </div>`;
-
-        cardsList.innerHTML += exampleTemplate;
+    .fail(function ajaxFailed(e){
+        // This failed
+        console.log(e);
+    })
+    .always(function ajaxAlwaysDoThis(dataObj){
+        // Always do
+        //console.log("Always");
     })
 
+    return false;
 }
-
-function resetCards(){
-    document.querySelector('.cards').innerHTML = '';
-}
-
-
-//displayData();

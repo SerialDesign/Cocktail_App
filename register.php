@@ -15,10 +15,13 @@ Page::forceDashboard();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register</title>
+    <title>Corona Blues - Register</title>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css" />
+
+
+    <link rel="stylesheet" href="assets/css/main_styles.css">
     <style>
         body{
             background-image: url('assets/images/shaking_girl.jpg');

@@ -5,18 +5,6 @@ define('__CONFIG__', true);
 // Require the config
 require_once "inc/config.php";
 
-$loginAndSignUpVisibility = '';  //used to hide login / Signup buttons if user IS LOGGED IN.
-$logoutVisibility = ''; //used to hide logout button if user is NOT LOGGED IN. 
-
-if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
-
-    $loginAndSignUpVisibility = "hide"; //hide login / signup button
-    
-}else{
-    $logoutVisibility = "hide"; //hide logout button
-}
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +22,7 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
     <meta name="keywords" content="Semantic-UI, Theme, Design, Template" />
     <meta name="author" content="PPType" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Corona Blues</title>
+    <title>Corona Blues - HOME</title>
 
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
@@ -66,34 +54,11 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
           <a class="header item">Corona Blues</a>
           <a class="active item">Home</a> 
           <a class="item" href="searchDrink.php">Search a Drink</a>
-          <a class="item">About</a>
-          <div class="ui dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item"> Action </a> <a class="item"> Another action </a>
-              <a class="item"> Something else here </a>
-              <div class="ui divider"></div>
-              <div class="header">Navbar header</div>
-              <a class="item"> Seperated link </a>
-              <a class="item"> One more seperated link </a>
-            </div>
-          </div>
+          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
 
-
+          <!-- Show SignUp & Login buttons OR Logout - depending if the User is logged in or not --> 
           <?php require('inc/signInAndLogoutSection.php')?>
-
-          <!-- 
-          <a class="item <?=$loginAndSignUpVisibility?>" href="register.php">Sign Up</a>
-          <a class="item <?=$loginAndSignUpVisibility?>" href="login.php">Log In</a>
-          <a class="item <?=$logoutVisibility?>" href="logout.php">Logout</a> -->
-
-
-
-          <!-- <div class="item right aligned" style="z-index:99;">
-            <a href="register.php">Sign Up</a>
-            <a href="login.php">Log In</a>
-          </div> -->
-
 
         </div>
       </div>
@@ -115,19 +80,11 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
         <div class="ui vertical borderless inverted fluid menu">
           <a class="active item">Home</a> 
           <a class="item" href="searchDrink.php">Search a Drink</a>
-          <a class="item">About</a>
-          <div class="ui dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-              <a class="item"> Action </a> <a class="item"> Another action </a>
-              <a class="item"> Something else here </a>
-              <div class="ui divider"></div>
-              <div class="header">Navbar header</div>
-              <a class="item"> Seperated link </a>
-              <a class="item"> One more seperated link </a>
-            </div>
-          </div>
-  
+          <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
+          <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
+
+
+          <!-- Show SignUp & Login buttons OR Logout - depending if the User is logged in or not --> 
           <?php require('inc/signInAndLogoutSection.php')?>
           
         </div>
@@ -165,11 +122,9 @@ if( isset($_SESSION['user_id']) ){ //&& $_SESSION['user_id'] > 0
 
       <div class="ui inverted vertical center aligned segment">
         <div class="ui active text container">
-          <h1 class="ui inverted header">Another example headline.</h1>
+          <h1 class="ui inverted header">Save Drinks to Favourites</h1>
           <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            id elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-            ultricies vehicula ut id elit.
+            If you have an Account, you can save Drinks to your Favourite list and visit them anytime. If you do not have an account, simply click on Sign Up and create one. :)
           </p>
           <div class="ui huge primary button">Learn more</div>
         </div>
