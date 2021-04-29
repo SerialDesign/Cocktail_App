@@ -91,21 +91,11 @@ p code {
   height: 600px;
 }
 
-/* .slideImageBackground{
-    background-image: url('https://www.thecocktaildb.com/images/media/drink/lijtw51551455287.jpg') !important;        
-    background-size: cover;
-} */
-
 .searchDrinkHeader{
 /*     background-image: url('../images/gin_tonic_background.jpg') !important;   */  
     background-image: url('../images/hot_girl_at_the_bar.jpg') !important;  
     background-size: cover !important;   
 }
-
-/* #drinkImageHeader{
-    background-image: url("https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg") !important; 
-    background-size: cover !important;   
-} */
 
 .slide .ui.text.container {
   max-width: 70%;
@@ -154,6 +144,7 @@ p code {
   font-size: 1.5rem;
 }
 
+/* MEDIA QUERIES */
 @media only screen and (max-width: 767px) {
   .slick-prev.slick-arrow {
     padding-left: 4rem;
@@ -183,6 +174,7 @@ p code {
 
 
 
+
 footer{
   margin: 200px 0 0 0 !important;
 }
@@ -192,6 +184,11 @@ footer{
 .fontSize20{
     font-size: 17px;
     padding-top:30px;
+}
+
+.pinkHeaderWShadow{
+  color: #FF1493 !important; 
+  text-shadow: 1px 1px 5px black;
 }
 
 
@@ -243,12 +240,10 @@ footer{
 
 
 
-
+/* Used on multiple Sites */
 #drinkInstructions{
   justify-content: flex-start !important;
 }
-/* MEDIA QUERIES */
-
 
 
 
@@ -269,36 +264,9 @@ footer{
   background: gold !important;
 }
 
-#goldButtonn{
-  width: 100%;
-  /* background: gold !important; */
 
-}
-
-
+/* Used on drink.php site */
 #addToFavouritesMessage{
   margin:10px 15px !important;
 }
 
-/* .ui.corner.label .bottom {
-    top: calc(100% - 4em);
-
-   
-}
-.ui.corner.label .icon {
-  top: calc(100% - 1.5em)
-} 
-
-.ui.corner.label:after {
-  position: absolute;
-  content: "";
-  z-index: -1;
-  width: 0px;
-  height: 0px;
-  background-color: transparent;
-  border-top: 4em solid transparent;
-  border-right: 0px solid tranparent;
-  border-bottom: 0px solid;
-  border-left: 4em solid transparent;
-  transition: border-color 0.1s ease;      
-  } */

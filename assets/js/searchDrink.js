@@ -1,11 +1,5 @@
-const cocktailDB_url = 'https://www.thecocktaildb.com/api/json/v1/1/';
-const randomDrink_endpoint = `${cocktailDB_url}random.php`;
-const drinkDetailsByID_endpoint = `${cocktailDB_url}lookup.php?i=`;
-const drinkName_endpoint = `${cocktailDB_url}search.php?s=`;
-const drinkIngredient_endpoint = `${cocktailDB_url}filter.php?i=`;
 
-const drinkImage_endpoint = 'https://www.thecocktaildb.com/images/media/drink/';
-
+/* Global API Endpoint Variables are declared in assets/js/cocktailDB_endpoints_global.js File */
 
 
 /*** SEARCH DRINK BY TEXT ***/
@@ -19,25 +13,13 @@ $('#drinkSearchSubmit').on('click', () => {
 
 
 async function searchDrinkByText( searchDrinkText ){
-    //alert('searched: '+searchDrinkText);
 
     let drinkSearchEndpoint = drinkName_endpoint + searchDrinkText;
     //console.log('endpoint: ' + drinkSearchEndpoint);
 
     const response = await fetch( drinkSearchEndpoint );
     const data = await response.json();
-
-    console.log(data);
-
-
-    /*if( !data.drinks == null){ 
-        //console.log(data.drinks[0].strDrink);
-        //console.log(data.drinks[0].strDrinkThumb);
-
-        let drinkName = data.drinks[0].strDrink;
-        let drinkImg = data.drinks[0].strDrinkThumb;
-        let drinkID = data.drinks[0].idDrink;
-    }*/
+    //console.log(data);
     
     //#resultDrinkSearch
     const cardsList = document.querySelector('.cards');
@@ -107,12 +89,17 @@ function getIngredientsAndMeasuresOfDrink( drink ){
         let ingredientValue = drink[`${ingredientVar+i}`]
         let measureValue = drink[`${measureVar+i}`]
 
+        // if i have an ingredient i usually have a measure with it (but not mandatory) 
+        // - but there it cannot have a measure without an ingredient, 
+        // thats why only checking ingredientValue != null
         if( ingredientValue != null ){
             // drinkIngredients += measureValue + ' ' + ingredientValue + ', ';
-            // if there is a measure there is a ingredient (but not the opposite way around)
+            // setting Measure and Ingredient together and concatinate to whole string with comma separates
+            // e.g. '2 oz Gin, 5 oz Soda Water, 1/4 Lime'
+
+            // Because the API is not perfect, i have to check if i really reveice values for it, and fill out the string accourdingly
             drinkIngredients += ( measureValue == null ? '' : measureValue ) 
-                                     + ( (ingredientValue == null || ingredientValue == '')  ? '' : (' <strong>'+  ingredientValue + '</strong> , ') );
-                                    //+ ' <strong>'+  ingredientValue + '</strong> , ' ;
+                                     + ( ingredientValue == ''  ? '' : (' <strong>'+  ingredientValue + '</strong>, ') );
         }
     }
 
@@ -128,20 +115,17 @@ function getDrinkCards( data ){
     const cardsList = document.querySelector('.cards');
 
     data.drinks.forEach(drink => {
-        console.log("drinkName:" + drink.strDrink);
-        console.log("imageSRC:"+ drink.strDrinkThumb);
-        /* TODO: check if a tag in a tag can be fixed for heart icon on image below (only found if search by two words.. */
+
+        let ingredients = getIngredientsAndMeasuresOfDrink(drink);
+        
         const exampleTemplate =  `<div class="card">
                                         <a class="image imgHoverEffect" href="drink.php?id=${drink.idDrink}">
-                                            <a id="saveToFavourites" class="ui left corner label">
-                                                <i class="heart icon"></i>
-                                            </a>
                                             <img src="${drink.strDrinkThumb}">
                                         </a>
                                         <div class="content">
                                         <div class="header">${drink.strDrink}</div>
                                         <div class="description">
-                                            Ingredients: ${drink.strIngredient1}
+                                            Ingredients: ${ingredients}
                                         </div>
                                     </div>`;
 
@@ -152,9 +136,10 @@ function getDrinkCards( data ){
 }
 
 
+
 /*** Search by INGREDIENT ***/
 
-/* EVENT ON SEARCH BUTTON */
+/* EVENT ON INGREDIENT SEARCH BUTTON */
 $('#ingredientSearchSubmit').on('click', () => {
 
     //alert('skrt');
@@ -170,7 +155,7 @@ async function searchDrinkByIngredient( drinkIngredientSearch ){
 
     //check if user search with more than one word - not possible..
     let hasMoreThanOneWord = drinkIngredientSearch.split(' ')[1] ? true : false;
-    console.log('[1] : '+hasMoreThanOneWord);
+    //console.log('[1] : '+hasMoreThanOneWord);
 
     const cardsList = document.querySelector('#resultIngredientSearch');
 
@@ -181,12 +166,12 @@ async function searchDrinkByIngredient( drinkIngredientSearch ){
         if( !hasMoreThanOneWord){
             
             let drinkSearchEndpoint = drinkIngredient_endpoint + drinkIngredientSearch;
-            console.log('endpoint: ' + drinkSearchEndpoint);
+            //console.log('endpoint: ' + drinkSearchEndpoint);
 
 
             const response = await fetch( drinkSearchEndpoint );
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
         
             resetCards();
             if( !(data.drinks == null) ) {
@@ -207,23 +192,20 @@ async function searchDrinkByIngredient( drinkIngredientSearch ){
                 })
             }
 
+            // if Ingredient Seach has more than one word 
             }else{
 
-                cardsList.innerHTML = `<h2>Nothing found with search Ingredient '${drinkIngredientSearch}'. Please only search with one Ingredient </h2> <br>`;
+                cardsList.innerHTML = `<h2>Nothing found with search Ingredient '${drinkIngredientSearch}'. Please search with one Ingredient only.</h2> <br>`;
 
 
                 // If nothing was found - try to search for drinks with the first word
                 let firstWordOfSearchText = drinkIngredientSearch.split(' ')[0];
-                console.log('firstWordOfSearchText: <' + firstWordOfSearchText + '>');
+                //console.log('firstWordOfSearchText: <' + firstWordOfSearchText + '>');
 
-                
                 let drinkSearchEndpoint = drinkName_endpoint + firstWordOfSearchText;
-                console.log('endpoint: ' + drinkSearchEndpoint);
-
                 const response = await fetch( drinkSearchEndpoint );
                 const data = await response.json();
-
-                console.log(data);
+                //console.log(data);
 
                 if(data.drinks != null){
                     // search for drinks with only the first word - to show at least some results (if it has) if nothing was found with the whole search phrase..
@@ -231,8 +213,9 @@ async function searchDrinkByIngredient( drinkIngredientSearch ){
                 }
 
             }
+    // Because API is bad, i have to use a CATCH, because it does not return a JSON object over this Endpoint if nothing was found.. 
     }catch{
-        document.querySelector('#resultIngredientSearch').innerHTML = `<h2>No Drinks found with searched Ingredient. Please something else. </h2> <br>`;
+        document.querySelector('#resultIngredientSearch').innerHTML = `<h2>No Drinks found with searched Ingredient. Please try something else. </h2> <br>`;
         return false;
     }
 }
@@ -242,35 +225,7 @@ async function searchDrinkByIngredient( drinkIngredientSearch ){
 
 
 
-/*** GET FAVOURITE DRINKS - used on getFavouriteDrinks.php  ***/
-async function getFavouriteDrinks( allFavouriteDrinksObj ){
 
-    let allFavDrinksContainer = document.querySelector('#allFavouriteDrinksCards');
-
-
-    for(var i=0; i<allFavouriteDrinksObj.length; i++){
-        const response = await fetch(drinkDetailsByID_endpoint + allFavouriteDrinksObj[i]['drink_id']);
-        const data = await response.json();
-        //console.log(data);
-
-        data.drinks.forEach(drink => {
-            //console.log("drinkName:" + drink.strDrink);
-            const exampleTemplate =  `<div class="card">
-                                            <a class="image imgHoverEffect" href="drink.php?id=${drink.idDrink}">
-                                                <img src="${drink.strDrinkThumb}">
-                                            </a>
-                                            <div class="content">
-                                            <div class="header">${drink.strDrink}</div>
-                                            <div class="description">
-                                                Ingredients: ${drink.strIngredient1}
-                                            </div>
-                                        </div>`;
-
-            allFavDrinksContainer.innerHTML += exampleTemplate;
-        })
-
-    } 
-}
 
 
 function resetCards(){

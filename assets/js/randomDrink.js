@@ -1,10 +1,5 @@
-/* Global Variables */
-const cocktailDB_url = 'https://www.thecocktaildb.com/api/json/v1/1/';
-const randomDrink_endpoint = `${cocktailDB_url}random.php`;
-const drinkDetailsByID_endpoint = `${cocktailDB_url}lookup.php?i=`;
-const drinkName_endpoint = `${cocktailDB_url}search.php?s=`;
 
-const drinkImage_endpoint = 'https://www.thecocktaildb.com/images/media/drink/';
+/* Global API Endpoint Variables are declared in assets/js/cocktailDB_endpoints_global.js File */
 
 
 /******************************************************** 
@@ -61,7 +56,7 @@ async function getIngredientsByDrinkID( drinkID ){
 /** Gets all Ingredients & Measures of a Drink 
  * (API provides 16 data.drinks.drink.strIngredient<1-16>  & data.drinks.drink.strMeasure<1-16> 
  * which are combined as '(measure) (ingrediant)' together: e.g. '1/2 lemon' ) ***/
- function getIngredientsAndMeasuresOfDrink( drink ){
+function getIngredientsAndMeasuresOfDrink( drink ){
 
     let drinkIngredients = '';
     let ingredientVar = 'strIngredient';
@@ -72,8 +67,15 @@ async function getIngredientsByDrinkID( drinkID ){
         let ingredientValue = drink[`${ingredientVar+i}`]
         let measureValue = drink[`${measureVar+i}`]
 
+        // if i have an ingredient i usually have a measure with it (but not mandatory) 
+        // - but there it cannot have a measure without an ingredient, 
+        // thats why only checking ingredientValue != null
         if( ingredientValue != null ){
+            // drinkIngredients += measureValue + ' ' + ingredientValue + ', ';
             // setting Measure and Ingredient together and concatinate to whole string with comma separates
+            // e.g. '2 oz Gin, 5 oz Soda Water, 1/4 Lime'
+
+            // Because the API is not perfect, i have to check if i really reveice values for it, and fill out the string accourdingly
             drinkIngredients += ( measureValue == null ? '' : measureValue ) 
                                   + ( (ingredientValue == null || ingredientValue == '')  ? '' : (ingredientValue + ', ') );
         }

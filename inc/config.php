@@ -1,8 +1,8 @@
 <?php 
 
-// If there is no constant defined calld __CONFIG__, do ot load this file
+// If there is no constant defined calld __CONFIG__, do not load this file
 if(!defined('__CONFIG__')){
-    exit('You do not have a confi file');
+    exit('You do not have a config file');
 
     // TODO: redirect here for Productin deploy
 }
@@ -14,11 +14,11 @@ if(!isset($_SESSION)){
 
 // Our config is below
 // Allow errors
-// TODO remove before ABGABE
-error_reporting(-1);
-ini_set('display_errors', 'On');
+// TODO: comment before ABGABE
+//error_reporting(-1);
+//ini_set('display_errors', 'On');
 
-// Include the DB php files
+// Including the php files
 include_once "classes/db.class.php";
 include_once "classes/Filter.class.php";
 include_once "classes/Page.class.php";

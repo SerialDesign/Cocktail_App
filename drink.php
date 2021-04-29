@@ -7,12 +7,6 @@ require_once "inc/config.php";
 
 if( isset($_GET["id"]) ){
   $drinkID = $_GET["id"];
-
-  /* TODO: remove */
-  /* $drink = new Drink($_GET["id"]);
-  $drink->skrt();
- */
-
   
   $visibilityAddDrinkToFav = "hide";
   $isDrinkFavourited = "";
@@ -181,8 +175,7 @@ if( isset($_GET["id"]) ){
 
 
     <script src="assets/js/favouriteDrink.js"></script>
-    <!-- TODO: why does it not work if saveDrinkToFavourites method is in searchDrink.js instead cocktailDB???-->
-    <script src="assets/js/searchDrink.js"></script> 
+
 
     
     <script>

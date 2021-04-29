@@ -155,12 +155,12 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
           <section class="ui text container">
 
             <!-- *** SEARCH *** -->
-            <h1 class="ui inverted header" style="color: #FF1493; text-shadow: 1px 1px 5px black;"> <!-- TODO:remove inline style -->
+            <h1 class="ui inverted header pinkHeaderWShadow"> 
               Your Favourite Drinks
             </h1>                             
 
             <!-- SEARCH -->
-            <form class="margin20sides"> <!-- TODO? <form method="GET" action="searchDrink.php" class="margin20sides"> -->
+            <form class="margin20sides"> 
 
 
 
@@ -220,8 +220,8 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
     <!-- JS Scripts linking (Libraries and JS files) -->
     <?php require_once "inc/js_scripts_footer.php" ?>
 
-    <script src="assets/js/searchDrink.js"></script>
-    <!-- <script src="assets/js/favouriteDrink.js"></script> -->
+    
+    <script src="assets/js/favouriteDrink.js"></script>
 
     
     <script>

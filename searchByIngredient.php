@@ -27,11 +27,12 @@ require_once "inc/config.php";
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
 
-
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="assets/css/main_styles.css">
 
+    <!-- CSS only used on Search site (that's why not in main_styles.css) -->
     <style>
       .wrapper{
         background: rgba(0,0,0,0,3) url('https://www.thecocktaildb.com/images/media/drink/dztcv51598717861.jpg');
@@ -147,12 +148,12 @@ require_once "inc/config.php";
           <section class="ui text container">
 
             <!-- *** SEARCH *** -->
-            <h1 class="ui inverted header" style="color: #FF1493; text-shadow: 1px 1px 5px black;"> <!-- TODO:remove inline style -->
+            <h1 class="ui inverted header pinkHeaderWShadow"> 
               Search by Ingredient
             </h1>                             
 
             <!-- SEARCH -->
-            <form class="margin20sides"> <!-- TODO? <form method="GET" action="searchDrink.php" class="margin20sides"> -->
+            <form class="margin20sides">
 
               <!-- DRINK SEARCH -->
               <div class="ui search marginTop50">

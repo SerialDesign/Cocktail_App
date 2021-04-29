@@ -14,7 +14,7 @@ if(!defined('__CONFIG__')){
 
 <!-- Semantic UI -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous"></script>
-    
-<!--TODO remove? maybe add global variables script here
- Own Scrips --> 
-<!-- <script src="assets/js/cocktailDB.js"></script> -->
+
+
+<!-- CocktailDB Endpoints Global - used on every site (except Login & Register) -->
+<script src="assets/js/cocktailDB_endpoints_global.js"></script>
