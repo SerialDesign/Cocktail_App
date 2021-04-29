@@ -14,6 +14,7 @@ if(!isset($_SESSION)){
 
 // Our config is below
 // Allow errors
+// TODO remove before ABGABE
 error_reporting(-1);
 ini_set('display_errors', 'On');
 
@@ -22,7 +23,6 @@ include_once "classes/db.class.php";
 include_once "classes/Filter.class.php";
 include_once "classes/Page.class.php";
 include_once "classes/User.class.php";
-include_once "classes/Drink.class.php";
 include_once "functions.php";
 include_once "linksForLoggedInUsers.php";
 

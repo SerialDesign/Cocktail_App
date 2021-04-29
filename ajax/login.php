@@ -61,7 +61,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
 }else{
     //Die. Kill the scrip. Redirect the user. Do something regardless.
-    exit('Site not called over AJAX');
+    
+    //exit('Site not called over AJAX');
+    header('Location: ../home.php');
 }
 
 ?>

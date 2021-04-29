@@ -19,11 +19,11 @@ class Page {
 		}
 	}
 
-	// Force the user to the dashboard if he is already logged in
+	// Force the user to the home site if he is already logged in
 	static function forceDashboard(){
 		if( isset($_SESSION['user_id']) ){
 			// The user is allowed here but redirect anyways
-			header("Location: dashboard.php"); exit;
+			header("Location: home.php"); exit;
 
 		}else{
 			// The user is not allowed here

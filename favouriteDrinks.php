@@ -34,21 +34,6 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
     <!-- Semantic UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" />
 
-<!--     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-      type="text/css"
-    /> -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
-    />
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="assets/css/main_styles.css">
@@ -123,7 +108,7 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
     <div class="ui tablet computer only padded grid">
       <div class="ui container">
         <div class="ui inverted borderless huge menu">
-          <a class="header item">Corona Blues</a>
+          <a class="header item" href="home.php">Corona Blues</a>
           <a class="item" href="home.php">Home</a> 
           <a class="item" href="searchDrink.php">Search a Drink</a>
           <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
@@ -141,7 +126,7 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
     <!-- NAVIGATION MOBILE VERSION -->
     <div class="ui mobile only grid">
       <div class="ui top fixed inverted borderless huge menu">
-        <a class="header item">Corona Blues</a>
+        <a class="header item" href="home.php">Corona Blues</a>
         <div class="right menu">
           <div class="item">
             <button class="ui icon toggle basic inverted button">
@@ -226,25 +211,17 @@ $allFavouriteDrinksOfUser = User::getFavouriteDrinksOfUser( $_SESSION['user_id']
       
 
       <!-- FOOTER -->
-      <footer class="ui vertical segment">
-        <div class="ui two column grid">
-          <div class="column">
-            &copy; 2021 SupportDrinking Company, Inc. · <a href="#root">Privacy</a> ·
-            <a href="#root">Terms</a>
-          </div>
-          <div class="right aligned column">
-            <a href="#root">Back to top</a>
-          </div>
-        </div>
-      </footer>
+      <?php require_once "inc/footer.php" ?>
+
+
     </div>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
+ 
+    <!-- JS Scripts linking (Libraries and JS files) -->
+    <?php require_once "inc/js_scripts_footer.php" ?>
 
     <script src="assets/js/searchDrink.js"></script>
+    <!-- <script src="assets/js/favouriteDrink.js"></script> -->
 
     
     <script>

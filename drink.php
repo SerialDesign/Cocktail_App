@@ -80,8 +80,8 @@ if( isset($_GET["id"]) ){
     <div class="ui tablet computer only padded grid">
       <div class="ui container">
         <div class="ui inverted borderless huge menu">
-          <a class="header item">Corona Blues</a>
-          <a class="item">Home</a> 
+          <a class="header item" href="home.php">Corona Blues</a>
+          <a class="item" href="home.php">Home</a> 
           <a class="item" href="searchDrink.php">Search a Drink</a>
           <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
           <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
@@ -106,7 +106,7 @@ if( isset($_GET["id"]) ){
           </div>
         </div>
         <div class="ui vertical borderless inverted fluid menu">
-          <a class="item">Home</a> 
+          <a class="item" href="home.php">Home</a> 
           <a class="item" href="searchDrink.php">Search a Drink</a>
           <a class="item" href="searchByIngredient.php">Search by Ingredient</a>
           <a class="item <?=$visibilityFavouriteDrinksSite?>" href="favouriteDrinks.php">Favourite Drinks</a>
@@ -153,7 +153,7 @@ if( isset($_GET["id"]) ){
           <h2 id="drinkIngredients"> </h2>
           
           <!-- <h2>Instructions</h2>  -->
-          <p id="drinkInstructions" class="fontSize20 marginBottom100"> </p>
+          <p id="drinkInstructions" class="fontSize20 marginBottom100 width100perc"> </p>
 
 
 
@@ -170,28 +170,17 @@ if( isset($_GET["id"]) ){
 
 
       <!-- FOOTER -->
-      <footer class="ui vertical segment">
-        <div class="ui two column grid">
-          <div class="column">
-            &copy; 2021 SupportDrinking Company, Inc. · <a href="#root">Privacy</a> ·
-            <a href="#root">Terms</a>
-          </div>
-          <div class="right aligned column">
-            <a href="#root">Back to top</a>
-          </div>
-        </div>
-      </footer>
+      <?php require_once "inc/footer.php" ?>
+
+
     </div>
-      
+    
+ 
+    <!-- JS Scripts linking (Libraries and JS files) -->
+    <?php require_once "inc/js_scripts_footer.php" ?>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
-
-
-    <script src="assets/js/cocktailDB.js"></script>
+    <script src="assets/js/favouriteDrink.js"></script>
     <!-- TODO: why does it not work if saveDrinkToFavourites method is in searchDrink.js instead cocktailDB???-->
     <script src="assets/js/searchDrink.js"></script> 
 
@@ -203,25 +192,12 @@ if( isset($_GET["id"]) ){
           $(".mobile.only.grid .ui.vertical.menu").toggle(100);
         });
 
-        $(".ui.dropdown").dropdown();
-
+        /* $(".ui.dropdown").dropdown(); */
 
         drinkID = $('#drinkID').val();
 
         let obj = getDrinkObj(drinkID);
 
-        console.log("OBJname: "+obj.name);
-        //console.log("OBJimage: "+obj.image);
-        //$('#drinkImageHeader').css({"backgroundImage":"url(\"https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg\") !important", "backgroundSize":"cover !important"});
-        
-        //$('#drinkImageHeader').css({'backgroundImage':'url("' + "https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg" + '") !important'});
-        //$('#drinkImageHeader').css({"backgroundImage":"red !important"});
-//        $('#drinkImageHeader').css({"backgroundColor":"red"});
-
-        /* let url = "https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg";
-        $('#drinkImageHeader').css({
-            "background-image":'url("'+url+'")', 
-            "background-size":'cover'}); */
 
         $('#AddOrRemoveFavourite').on('click', () => {
 

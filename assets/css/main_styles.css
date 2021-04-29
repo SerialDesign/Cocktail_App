@@ -199,6 +199,9 @@ footer{
 
 /* Margin All Sides */
 
+.margin20{
+  margin: 20px !important;
+}
 
 /* Margin Top */
 

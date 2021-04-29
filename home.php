@@ -126,7 +126,7 @@ require_once "inc/config.php";
           <p>
             If you have an Account, you can save Drinks to your Favourite list and visit them anytime. If you do not have an account, simply click on Sign Up and create one. :)
           </p>
-          <div class="ui huge primary button">Learn more</div>
+          <a class="ui huge primary button" href="favouriteDrinks.php">Learn more</a>
         </div>
       </div>
 
@@ -144,7 +144,7 @@ require_once "inc/config.php";
             /><!-- drinkID = "12754" -->
             <h1 class="ui header">Get Drunk today!</h1>
             <p>
-              Donec sed odio dui. Etiam porta sem malesuada magna mollis
+              It's Corona Time! What else can you do instead of getting drunk ;P..
               euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
               Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
               Praesent commodo cursus magna.
@@ -172,7 +172,7 @@ require_once "inc/config.php";
             /> 
             <h1 class="ui header">Don't drink and drive</h1>
             <p>
-              Donec sed odio dui. Etiam porta sem malesuada magna mollis
+              We also have non-alcoholic Drinks! :)  malesuada magna mollis
               euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
               Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
               Praesent commodo cursus magna.
@@ -184,31 +184,7 @@ require_once "inc/config.php";
 
 
 
-
-
-      <!-- <div class="ui vertical segment">
-        <div class="ui stackable grid">
-          <div class="ten wide column">
-            <h1 class="ui header">
-              First featurette heading.
-              <span class="sub">It'll blow your mind.</span>
-            </h1>
-            <p>
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-              ligula porta felis euismod semper. Praesent commodo cursus magna,
-              vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-              commodo.
-            </p>
-          </div>
-          <div class="six wide right aligned column">
-            <img
-              class="ui image"
-              src="./assets/images/wireframe/square-image.png"
-            />
-          </div>
-        </div>
-      </div> -->
-
+      <!-- RANDOM DRINK FEATURE -->
       <div class="ui vertical segment">
         <div class="ui stackable grid">
           <div class="ten wide column">
@@ -217,10 +193,7 @@ require_once "inc/config.php";
               <span class="sub">out of our library.</span>
             </h1>
             <p>
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-              ligula porta felis euismod semper. Praesent commodo cursus magna,
-              vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-              commodo.
+              Check out this Random generated Drink for you! If you are interested, click on Ingredients or Instructions to see more information. Or just click the button to get another random Drink. Enjoy our selection!
             </p>
 
             <button id="generateRandomDrink" class="ui button">Get another random Drink</button>
@@ -229,11 +202,9 @@ require_once "inc/config.php";
 
 
           <div class="six wide column">
-            <!-- <img
-              class="ui image"
-              src="./assets/images/wireframe/square-image.png"
-            /> -->
-            <div class="ui card">
+            
+            <!-- RANDOM DRINK CARD -->
+            <div class="ui card margin20">
                 <a class="image" href="#">
                     <img id="randomDrinkImg" src="" alt="">
                 </a>
@@ -265,7 +236,7 @@ require_once "inc/config.php";
                 </div>
             </div>
             
-            <div id="messageBox"></div>
+            <!-- <div id="messageBox"></div> -->
 
             <!-- HIDDEN FIELD WITH DRINKID - for further requests -->
             <input type="hidden" id="drinkID">
@@ -292,8 +263,8 @@ require_once "inc/config.php";
               Oh yeah, <span class="sub">it's that good.</span>
             </h1>
             <p>
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-              ligula porta felis euismod semper. Praesent commodo cursus magna,
+              I know she is HOT! Not as hot as our Drinks though.. but close. 
+              Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna,
               vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
               commodo.
             </p>
@@ -307,7 +278,7 @@ require_once "inc/config.php";
               And lastly, <span class="sub">this one.</span>
             </h1>
             <p>
-              Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
+              She even flirts with you. Especially if you buy a Drink. Vestibulum id
               ligula porta felis euismod semper. Praesent commodo cursus magna,
               vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
               commodo.
@@ -322,25 +293,23 @@ require_once "inc/config.php";
         </div>
       </div>
 
-      <footer class="ui vertical segment">
-        <div class="ui two column grid">
-          <div class="column">
-            &copy; 2021 SupportDrinking Company, Inc. · <a href="#root">Privacy</a> ·
-            <a href="#root">Terms</a>
-          </div>
-          <div class="right aligned column">
-            <a href="#root">Back to top</a>
-          </div>
-        </div>
-      </footer>
+
+      <!-- FOOTER -->
+      <?php require_once "inc/footer.php" ?>
+
 
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+ 
+    <!-- JS Scripts linking (Libraries and JS files) -->
+    <?php require_once "inc/js_scripts_footer.php" ?>
+
+    <!-- Slick Carousel - only used on this site -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <script src="assets/js/randomDrink.js"></script>
 
 
-    <script src="assets/js/cocktailDB.js"></script>
     <script>
       $(document).ready(function() {
         $(".ui.toggle.button").click(function() {
@@ -355,8 +324,9 @@ require_once "inc/config.php";
           speed: 500
         });
       });
-        
 
+      // gets random Drink (Feature found in the middle of HOME site)
+      // and makes a card with buttons for ingredients and instructions to mix
       getRandomDrink();
         
     </script>

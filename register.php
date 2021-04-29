@@ -90,7 +90,14 @@ Page::forceDashboard();
     </div>
 
 
-    <?php require_once "inc/footer.php" ?>
+    <?php require_once "inc/js_scripts_footer.php" ?>
 
+    <!-- Script only used on Login and Registration Page -->
+    <script src="assets/js/loginAndRegister.js"></script>
+
+    <!-- UIkit JS - just used for Login and Registration Form, nowhere else.. Semantic Ui main Frontent Framework -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/js/uikit-icons.min.js"></script>
+    
 </body>
 </html>

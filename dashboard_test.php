@@ -125,7 +125,7 @@ if($getUserInfo->rowCount() == 1){
     </div>
  -->
 
-    <?php require_once "inc/footer.php" ?>
+    <?php require_once "inc/js_scripts_footer.php" ?>
 
     <script>
         

@@ -5,6 +5,7 @@ define('__CONFIG__', true);
 // Require the config
 require_once "inc/config.php";
 
+/* REDIRECTS TO home.php - used if deployed to a server later on :) */
 header('Location: home.php');
 
 ?>
@@ -15,27 +16,12 @@ header('Location: home.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css" />
+    <title>Index</title>
 </head>
 <body>
-    
-    <div class="uk-section uk-container">
-        <?php
-        echo "Hello skrt. Today is: ";
-        echo date("d m Y");
-        ?>
 
-        <p>
-            <a href="login.php">Login</a>
-            <a href="register.php">Register</a>
-        </p>
 
-    </div>
-
-    <?php require_once "inc/footer.php" ?>
+    <?php require_once "inc/js_scripts_footer.php" ?>
 
 </body>
 </html>

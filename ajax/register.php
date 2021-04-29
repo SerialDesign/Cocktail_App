@@ -43,32 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo json_encode($return, JSON_PRETTY_PRINT); exit;
     }
 
-    /* 
-    $preValidationError = false;
-
-    // Validate Username
-    if( strlen($username) < 4 ){
-        $return['error'] = "Username must be more than 3 signs"; 
-        $preValidationError = true;
-    }
-
-    // Validate e-mail
-    if ( ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $return['error'] = $email ." is not a valid email"; 
-        $preValidationError = true;
-    }
-
-
-    // Validate if Passward and ConfirmPassword are the save value
-    if( $password != $confirmPW ){
-        $return['error'] = "Passwords do not match each other"; 
-        $preValidationError = true;
-    }
-
-    if($preValidationError){
-        echo json_encode($return, JSON_PRETTY_PRINT); exit;
-    } */
-
+    
 
     // Making sure the user does not exist
     $user_found = User::Find($email);
@@ -82,7 +57,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // User does not exists, add them now
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT );
 
-        $addUser = $con->prepare("INSERT INTO USER(email, password) VALUES(LOWER(:email), :password)");
+        $addUser = $con->prepare("INSERT INTO USER(username, email, password) VALUES(:username, LOWER(:email), :password)");
+        $addUser->bindParam(':username', $username, PDO::PARAM_STR);
         $addUser->bindParam(':email', $email, PDO::PARAM_STR);
         $addUser->bindParam(':password', $password, PDO::PARAM_STR);
         $addUser->execute();
@@ -95,7 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $return['redirect'] = 'home.php?message=welcome'; 
         $return['isLoggedIn'] = true;
     }
-    
+
     echo json_encode($return, JSON_PRETTY_PRINT); exit;
 
 }else{
